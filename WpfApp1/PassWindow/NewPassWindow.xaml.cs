@@ -68,7 +68,7 @@ namespace WpfApp1.PassWindow
                 client.Host = "smtp.yandex.ru";
                 client.Port = 587;
                 client.EnableSsl = true;
-                client.Credentials = new NetworkCredential("uka2828", "viercbkjqsbypesy");
+                client.Credentials = new NetworkCredential("uka2828", "rdgdnhfhhyjfg");  
                 client.Send(mailMessage);
                 MessageBox.Show($"Код подтверждения отправлен на вашу почту: {user.Email}", "Информация",
                     MessageBoxButton.OK, MessageBoxImage.Information);

@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Julya\Desktop\Диплом!\WpfApp1\WpfApp1\obj\Debug\
+C:\Users\Julya\Desktop\WpfApp1\WpfApp1\obj\Debug\
 WpfApp1
 none
 false
 DEBUG;TRACE
-C:\Users\Julya\Desktop\Диплом!\WpfApp1\WpfApp1\App.xaml
+C:\Users\Julya\Desktop\WpfApp1\WpfApp1\App.xaml
 656663329
 2907068145
-39221378757
-331615516049
+40-1860709861
+33-148773431
 AdminWindow\AddAndEditUsersWindow.xaml;AdminWindow\AdminWindow.xaml;AuthWindow.xaml;PassWindow\ChangePassWindow.xaml;UserWindow\MainWindow.xaml;PassWindow\NewPassWindow.xaml;
 
-False
+True
 
