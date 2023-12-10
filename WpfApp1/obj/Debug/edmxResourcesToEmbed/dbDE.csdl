@@ -1,0 +1,644 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="collection_faceoffModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="DATA_DIAGNOSIS">
+    <Key>
+      <PropertyRef Name="DATA_DIAGNOSIS_ID" />
+    </Key>
+    <Property Name="DATA_DIAGNOSIS_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DATE_CONSULTATION" Type="DateTime" Precision="0" />
+    <Property Name="FK_DIAGNOZ_ID" Type="Int32" />
+    <Property Name="FK_MOTCONSUU_ID" Type="Int32" />
+    <NavigationProperty Name="DIAGNOZ" Relationship="Self.FK__DATA_DIAG__FK_DI__5AEE82B9" FromRole="DATA_DIAGNOSIS" ToRole="DIAGNOZ" />
+    <NavigationProperty Name="MOTCONSU" Relationship="Self.FK__DATA_DIAG__FK_MO__5BE2A6F2" FromRole="DATA_DIAGNOSIS" ToRole="MOTCONSU" />
+  </EntityType>
+  <EntityType Name="DATA_DOCTOR_IN_CHARGE">
+    <Key>
+      <PropertyRef Name="DATA_DOCTOR_IN_CHARGE_ID" />
+    </Key>
+    <Property Name="DATA_DOCTOR_IN_CHARGE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DATA_NAZNAHENIQ" Type="DateTime" Precision="0" />
+    <Property Name="FK_MOTCONSU_ID" Type="Int32" />
+    <Property Name="FK_MEDECINS_ID" Type="Int32" />
+    <NavigationProperty Name="MEDECINS" Relationship="Self.FK__DATA_DOCT__FK_ME__5629CD9C" FromRole="DATA_DOCTOR_IN_CHARGE" ToRole="MEDECINS" />
+    <NavigationProperty Name="MOTCONSU" Relationship="Self.FK__DATA_DOCT__FK_MO__5535A963" FromRole="DATA_DOCTOR_IN_CHARGE" ToRole="MOTCONSU" />
+  </EntityType>
+  <EntityType Name="DATA_STAT_HOSPITALIZATION">
+    <Key>
+      <PropertyRef Name="DATA_STAT_HOSPITALIZATION_ID" />
+    </Key>
+    <Property Name="DATA_STAT_HOSPITALIZATION_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PROVEDENO_KOJKO_DNEJ" Type="Int32" />
+    <Property Name="KEM_DOSTAVLEN" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="FK_ED_TREATMENT_RESULTS_ID" Type="Int32" />
+    <Property Name="FK_ED_PATIENTS_STATUS_ID" Type="Int32" />
+    <Property Name="FK_DATA_TRANSFERS_ID" Type="Int32" />
+    <Property Name="FK_MEDECINS_ID" Type="Int32" />
+    <NavigationProperty Name="DATA_TRANSFERS" Relationship="Self.FK__DATA_STAT__FK_DA__48CFD27E" FromRole="DATA_STAT_HOSPITALIZATION" ToRole="DATA_TRANSFERS" />
+    <NavigationProperty Name="ED_TREATMENT_RESULTS" Relationship="Self.FK__DATA_STAT__FK_ED__46E78A0C" FromRole="DATA_STAT_HOSPITALIZATION" ToRole="ED_TREATMENT_RESULTS" />
+    <NavigationProperty Name="ED_PATIENTS_STATUS" Relationship="Self.FK__DATA_STAT__FK_ED__47DBAE45" FromRole="DATA_STAT_HOSPITALIZATION" ToRole="ED_PATIENTS_STATUS" />
+    <NavigationProperty Name="MEDECINS" Relationship="Self.FK__DATA_STAT__FK_ME__49C3F6B7" FromRole="DATA_STAT_HOSPITALIZATION" ToRole="MEDECINS" />
+  </EntityType>
+  <EntityType Name="DATA_TRANSFERS">
+    <Key>
+      <PropertyRef Name="DATA_TRANSFERS_ID" />
+    </Key>
+    <Property Name="DATA_TRANSFERS_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ARRIVE_DATE" Type="DateTime" Precision="0" />
+    <Property Name="DEPART_DATE" Type="DateTime" Precision="0" />
+    <Property Name="FK_HO_BED_ID" Type="Int32" />
+    <Property Name="FK_HO_RESERV_ID" Type="Int32" />
+    <Property Name="FK_PATIENTS_ID" Type="Int32" />
+    <NavigationProperty Name="DATA_STAT_HOSPITALIZATION" Relationship="Self.FK__DATA_STAT__FK_DA__48CFD27E" FromRole="DATA_TRANSFERS" ToRole="DATA_STAT_HOSPITALIZATION" />
+    <NavigationProperty Name="HO_BED" Relationship="Self.FK__DATA_TRAN__FK_HO__3E52440B" FromRole="DATA_TRANSFERS" ToRole="HO_BED" />
+    <NavigationProperty Name="HO_RESERV" Relationship="Self.FK__DATA_TRAN__FK_HO__3F466844" FromRole="DATA_TRANSFERS" ToRole="HO_RESERV" />
+    <NavigationProperty Name="PATIENTS" Relationship="Self.FK__DATA_TRAN__FK_PA__403A8C7D" FromRole="DATA_TRANSFERS" ToRole="PATIENTS" />
+  </EntityType>
+  <EntityType Name="DIAGNOZ">
+    <Key>
+      <PropertyRef Name="DIAGNOZ_ID" />
+    </Key>
+    <Property Name="DIAGNOZ_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NAME" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="DATA_DIAGNOSIS" Relationship="Self.FK__DATA_DIAG__FK_DI__5AEE82B9" FromRole="DIAGNOZ" ToRole="DATA_DIAGNOSIS" />
+  </EntityType>
+  <EntityType Name="ED_PATIENTS_STATUS">
+    <Key>
+      <PropertyRef Name="ED_PATIENTS_STATUS_ID" />
+    </Key>
+    <Property Name="ED_PATIENTS_STATUS_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NAME" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="DATA_STAT_HOSPITALIZATION" Relationship="Self.FK__DATA_STAT__FK_ED__47DBAE45" FromRole="ED_PATIENTS_STATUS" ToRole="DATA_STAT_HOSPITALIZATION" />
+  </EntityType>
+  <EntityType Name="ED_TREATMENT_RESULTS">
+    <Key>
+      <PropertyRef Name="ED_TREATMENT_RESULTS_ID" />
+    </Key>
+    <Property Name="ED_TREATMENT_RESULTS_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ED_TREATMENT_RESULTS_NAME" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="DATA_STAT_HOSPITALIZATION" Relationship="Self.FK__DATA_STAT__FK_ED__46E78A0C" FromRole="ED_TREATMENT_RESULTS" ToRole="DATA_STAT_HOSPITALIZATION" />
+  </EntityType>
+  <EntityType Name="FM_DEP">
+    <Key>
+      <PropertyRef Name="FM_DEP_ID" />
+    </Key>
+    <Property Name="FM_DEP_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LABEL" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="MEDDEP" Relationship="Self.FK__MEDDEP__FK_FM_DE__37A5467C" FromRole="FM_DEP" ToRole="MEDDEP" />
+  </EntityType>
+  <EntityType Name="HO_BED">
+    <Key>
+      <PropertyRef Name="HO_BED_ID" />
+    </Key>
+    <Property Name="HO_BED_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LABEL" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="READY" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="FK_HO_ROOM_ID" Type="Int32" />
+    <Property Name="FK_HO_BED_TYPE_ID" Type="Int32" />
+    <NavigationProperty Name="DATA_TRANSFERS" Relationship="Self.FK__DATA_TRAN__FK_HO__3E52440B" FromRole="HO_BED" ToRole="DATA_TRANSFERS" />
+    <NavigationProperty Name="HO_BED_TYPE" Relationship="Self.FK__HO_BED__FK_HO_BE__29572725" FromRole="HO_BED" ToRole="HO_BED_TYPE" />
+    <NavigationProperty Name="HO_ROOM" Relationship="Self.FK__HO_BED__FK_HO_RO__286302EC" FromRole="HO_BED" ToRole="HO_ROOM" />
+  </EntityType>
+  <EntityType Name="HO_BED_TYPE">
+    <Key>
+      <PropertyRef Name="HO_BED_TYPE_ID" />
+    </Key>
+    <Property Name="HO_BED_TYPE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LABEL" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="HO_BED" Relationship="Self.FK__HO_BED__FK_HO_BE__29572725" FromRole="HO_BED_TYPE" ToRole="HO_BED" />
+  </EntityType>
+  <EntityType Name="HO_RESERV">
+    <Key>
+      <PropertyRef Name="HO_RESERV_ID" />
+    </Key>
+    <Property Name="HO_RESERV_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FROM_DATE" Type="DateTime" Precision="0" />
+    <Property Name="TO_DATE" Type="DateTime" Precision="0" />
+    <Property Name="DURATION" Type="Int32" />
+    <Property Name="FK_MEDDEP_ID" Type="Int32" />
+    <NavigationProperty Name="DATA_TRANSFERS" Relationship="Self.FK__DATA_TRAN__FK_HO__3F466844" FromRole="HO_RESERV" ToRole="DATA_TRANSFERS" />
+    <NavigationProperty Name="MEDDEP" Relationship="Self.FK__HO_RESERV__FK_ME__3B75D760" FromRole="HO_RESERV" ToRole="MEDDEP" />
+    <Property Name="FK_HO_RESERV_STATUS_ID" Type="Int32" />
+    <NavigationProperty Name="HO_RESERV_STATUS" Relationship="collection_faceoffModel.FK__HO_RESERV__FK_HO__17036CC0" FromRole="HO_RESERV" ToRole="HO_RESERV_STATUS" />
+  </EntityType>
+  <EntityType Name="HO_ROOM">
+    <Key>
+      <PropertyRef Name="HO_ROOM_ID" />
+    </Key>
+    <Property Name="HO_ROOM_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LABEL" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="FLOOR" Type="Int32" />
+    <NavigationProperty Name="HO_BED" Relationship="Self.FK__HO_BED__FK_HO_RO__286302EC" FromRole="HO_ROOM" ToRole="HO_BED" />
+    <Property Name="FK_MEDDEP_ID" Type="Int32" />
+    <NavigationProperty Name="MEDDEP" Relationship="collection_faceoffModel.FK__HO_ROOM__FK_MEDD__14270015" FromRole="HO_ROOM" ToRole="MEDDEP" />
+  </EntityType>
+  <EntityType Name="MEDDEP">
+    <Key>
+      <PropertyRef Name="MEDDEP_ID" />
+    </Key>
+    <Property Name="MEDDEP_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FK_MEDECINS_ID" Type="Int32" />
+    <Property Name="FK_FM_DEP_ID" Type="Int32" />
+    <Property Name="FK_VID_STACIONARA_ID" Type="Int32" />
+    <NavigationProperty Name="FM_DEP" Relationship="Self.FK__MEDDEP__FK_FM_DE__37A5467C" FromRole="MEDDEP" ToRole="FM_DEP" />
+    <NavigationProperty Name="HO_RESERV" Relationship="Self.FK__HO_RESERV__FK_ME__3B75D760" FromRole="MEDDEP" ToRole="HO_RESERV" />
+    <NavigationProperty Name="MEDECINS" Relationship="Self.FK__MEDDEP__FK_MEDEC__36B12243" FromRole="MEDDEP" ToRole="MEDECINS" />
+    <NavigationProperty Name="VID_STACIONARA" Relationship="Self.FK__MEDDEP__FK_VID_S__38996AB5" FromRole="MEDDEP" ToRole="VID_STACIONARA" />
+    <NavigationProperty Name="HO_ROOM" Relationship="collection_faceoffModel.FK__HO_ROOM__FK_MEDD__14270015" FromRole="MEDDEP" ToRole="HO_ROOM" />
+  </EntityType>
+  <EntityType Name="MEDECINS">
+    <Key>
+      <PropertyRef Name="MEDECINS_ID" />
+    </Key>
+    <Property Name="MEDECINS_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NOM" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="PRENOM" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="PATRONYME" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="SURNAME_IO" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="LOGIN" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="TELEMED_PASSWORD" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="FK_SPECIALISATION_ID" Type="Int32" />
+    <NavigationProperty Name="DATA_DOCTOR_IN_CHARGE" Relationship="Self.FK__DATA_DOCT__FK_ME__5629CD9C" FromRole="MEDECINS" ToRole="DATA_DOCTOR_IN_CHARGE" />
+    <NavigationProperty Name="DATA_STAT_HOSPITALIZATION" Relationship="Self.FK__DATA_STAT__FK_ME__49C3F6B7" FromRole="MEDECINS" ToRole="DATA_STAT_HOSPITALIZATION" />
+    <NavigationProperty Name="MEDDEP" Relationship="Self.FK__MEDDEP__FK_MEDEC__36B12243" FromRole="MEDECINS" ToRole="MEDDEP" />
+    <NavigationProperty Name="SPECIALISATION" Relationship="Self.FK__MEDECINS__FK_SPE__33D4B598" FromRole="MEDECINS" ToRole="SPECIALISATION" />
+  </EntityType>
+  <EntityType Name="MOTCONSU">
+    <Key>
+      <PropertyRef Name="MOTCONSU_ID" />
+    </Key>
+    <Property Name="MOTCONSU_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DATE_CONSULTATION" Type="DateTime" Precision="0" />
+    <Property Name="CREATE_DATE_TIME" Type="DateTime" Precision="0" />
+    <Property Name="FK_PATIENTS_ID" Type="Int32" />
+    <NavigationProperty Name="DATA_DIAGNOSIS" Relationship="Self.FK__DATA_DIAG__FK_MO__5BE2A6F2" FromRole="MOTCONSU" ToRole="DATA_DIAGNOSIS" />
+    <NavigationProperty Name="DATA_DOCTOR_IN_CHARGE" Relationship="Self.FK__DATA_DOCT__FK_MO__5535A963" FromRole="MOTCONSU" ToRole="DATA_DOCTOR_IN_CHARGE" />
+    <NavigationProperty Name="PATIENTS" Relationship="Self.FK__MOTCONSU__FK_PAT__52593CB8" FromRole="MOTCONSU" ToRole="PATIENTS" />
+  </EntityType>
+  <EntityType Name="MOTCONSU_EVENT_TYPES">
+    <Key>
+      <PropertyRef Name="MOTCONSU_EVENT_TYPES_ID" />
+    </Key>
+    <Property Name="MOTCONSU_EVENT_TYPES_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LABEL" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="PATIENTS">
+    <Key>
+      <PropertyRef Name="PATIENTS_ID" />
+    </Key>
+    <Property Name="PATIENTS_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NOM" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="PRENOM" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="PATROMYME" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="DATA_SMERTI" Type="DateTime" Precision="0" />
+    <Property Name="POL" Type="Int32" />
+    <Property Name="EMAIL" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="NONRESIDENT" Type="Int32" />
+    <NavigationProperty Name="DATA_TRANSFERS" Relationship="Self.FK__DATA_TRAN__FK_PA__403A8C7D" FromRole="PATIENTS" ToRole="DATA_TRANSFERS" />
+    <NavigationProperty Name="MOTCONSU" Relationship="Self.FK__MOTCONSU__FK_PAT__52593CB8" FromRole="PATIENTS" ToRole="MOTCONSU" />
+  </EntityType>
+  <EntityType Name="PL_EXAM">
+    <Key>
+      <PropertyRef Name="PL_EXAM_ID" />
+    </Key>
+    <Property Name="PL_EXAM_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NAME" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="DUREE" Type="Int32" />
+    <Property Name="PRINT_LABLE" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="PLANNING">
+    <Key>
+      <PropertyRef Name="PLANNING_ID" />
+    </Key>
+    <Property Name="PLANNING_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DATE_CONS" Type="DateTime" Precision="0" />
+    <Property Name="COMMENTARIE" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="SPECIALISATION">
+    <Key>
+      <PropertyRef Name="SPECIALISATION_ID" />
+    </Key>
+    <Property Name="SPECIALISATION_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NAME" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="MEDECINS" Relationship="Self.FK__MEDECINS__FK_SPE__33D4B598" FromRole="SPECIALISATION" ToRole="MEDECINS" />
+  </EntityType>
+  <EntityType Name="VID_STACIONARA">
+    <Key>
+      <PropertyRef Name="VID_STACIONARA_ID" />
+    </Key>
+    <Property Name="VID_STACIONARA_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LABEL" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="MEDDEP" Relationship="Self.FK__MEDDEP__FK_VID_S__38996AB5" FromRole="VID_STACIONARA" ToRole="MEDDEP" />
+  </EntityType>
+  <Association Name="FK__DATA_DIAG__FK_DI__5AEE82B9">
+    <End Role="DIAGNOZ" Type="Self.DIAGNOZ" Multiplicity="0..1" />
+    <End Role="DATA_DIAGNOSIS" Type="Self.DATA_DIAGNOSIS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DIAGNOZ">
+        <PropertyRef Name="DIAGNOZ_ID" />
+      </Principal>
+      <Dependent Role="DATA_DIAGNOSIS">
+        <PropertyRef Name="FK_DIAGNOZ_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DATA_DIAG__FK_MO__5BE2A6F2">
+    <End Role="MOTCONSU" Type="Self.MOTCONSU" Multiplicity="0..1" />
+    <End Role="DATA_DIAGNOSIS" Type="Self.DATA_DIAGNOSIS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MOTCONSU">
+        <PropertyRef Name="MOTCONSU_ID" />
+      </Principal>
+      <Dependent Role="DATA_DIAGNOSIS">
+        <PropertyRef Name="FK_MOTCONSUU_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DATA_DOCT__FK_ME__5629CD9C">
+    <End Role="MEDECINS" Type="Self.MEDECINS" Multiplicity="0..1" />
+    <End Role="DATA_DOCTOR_IN_CHARGE" Type="Self.DATA_DOCTOR_IN_CHARGE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MEDECINS">
+        <PropertyRef Name="MEDECINS_ID" />
+      </Principal>
+      <Dependent Role="DATA_DOCTOR_IN_CHARGE">
+        <PropertyRef Name="FK_MEDECINS_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DATA_DOCT__FK_MO__5535A963">
+    <End Role="MOTCONSU" Type="Self.MOTCONSU" Multiplicity="0..1" />
+    <End Role="DATA_DOCTOR_IN_CHARGE" Type="Self.DATA_DOCTOR_IN_CHARGE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MOTCONSU">
+        <PropertyRef Name="MOTCONSU_ID" />
+      </Principal>
+      <Dependent Role="DATA_DOCTOR_IN_CHARGE">
+        <PropertyRef Name="FK_MOTCONSU_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DATA_STAT__FK_DA__48CFD27E">
+    <End Role="DATA_TRANSFERS" Type="Self.DATA_TRANSFERS" Multiplicity="0..1" />
+    <End Role="DATA_STAT_HOSPITALIZATION" Type="Self.DATA_STAT_HOSPITALIZATION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DATA_TRANSFERS">
+        <PropertyRef Name="DATA_TRANSFERS_ID" />
+      </Principal>
+      <Dependent Role="DATA_STAT_HOSPITALIZATION">
+        <PropertyRef Name="FK_DATA_TRANSFERS_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DATA_STAT__FK_ED__46E78A0C">
+    <End Role="ED_TREATMENT_RESULTS" Type="Self.ED_TREATMENT_RESULTS" Multiplicity="0..1" />
+    <End Role="DATA_STAT_HOSPITALIZATION" Type="Self.DATA_STAT_HOSPITALIZATION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ED_TREATMENT_RESULTS">
+        <PropertyRef Name="ED_TREATMENT_RESULTS_ID" />
+      </Principal>
+      <Dependent Role="DATA_STAT_HOSPITALIZATION">
+        <PropertyRef Name="FK_ED_TREATMENT_RESULTS_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DATA_STAT__FK_ED__47DBAE45">
+    <End Role="ED_PATIENTS_STATUS" Type="Self.ED_PATIENTS_STATUS" Multiplicity="0..1" />
+    <End Role="DATA_STAT_HOSPITALIZATION" Type="Self.DATA_STAT_HOSPITALIZATION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ED_PATIENTS_STATUS">
+        <PropertyRef Name="ED_PATIENTS_STATUS_ID" />
+      </Principal>
+      <Dependent Role="DATA_STAT_HOSPITALIZATION">
+        <PropertyRef Name="FK_ED_PATIENTS_STATUS_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DATA_STAT__FK_ME__49C3F6B7">
+    <End Role="MEDECINS" Type="Self.MEDECINS" Multiplicity="0..1" />
+    <End Role="DATA_STAT_HOSPITALIZATION" Type="Self.DATA_STAT_HOSPITALIZATION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MEDECINS">
+        <PropertyRef Name="MEDECINS_ID" />
+      </Principal>
+      <Dependent Role="DATA_STAT_HOSPITALIZATION">
+        <PropertyRef Name="FK_MEDECINS_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DATA_TRAN__FK_HO__3E52440B">
+    <End Role="HO_BED" Type="Self.HO_BED" Multiplicity="0..1" />
+    <End Role="DATA_TRANSFERS" Type="Self.DATA_TRANSFERS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HO_BED">
+        <PropertyRef Name="HO_BED_ID" />
+      </Principal>
+      <Dependent Role="DATA_TRANSFERS">
+        <PropertyRef Name="FK_HO_BED_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DATA_TRAN__FK_HO__3F466844">
+    <End Role="HO_RESERV" Type="Self.HO_RESERV" Multiplicity="0..1" />
+    <End Role="DATA_TRANSFERS" Type="Self.DATA_TRANSFERS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HO_RESERV">
+        <PropertyRef Name="HO_RESERV_ID" />
+      </Principal>
+      <Dependent Role="DATA_TRANSFERS">
+        <PropertyRef Name="FK_HO_RESERV_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DATA_TRAN__FK_PA__403A8C7D">
+    <End Role="PATIENTS" Type="Self.PATIENTS" Multiplicity="0..1" />
+    <End Role="DATA_TRANSFERS" Type="Self.DATA_TRANSFERS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PATIENTS">
+        <PropertyRef Name="PATIENTS_ID" />
+      </Principal>
+      <Dependent Role="DATA_TRANSFERS">
+        <PropertyRef Name="FK_PATIENTS_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__MEDDEP__FK_FM_DE__37A5467C">
+    <End Role="FM_DEP" Type="Self.FM_DEP" Multiplicity="0..1" />
+    <End Role="MEDDEP" Type="Self.MEDDEP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FM_DEP">
+        <PropertyRef Name="FM_DEP_ID" />
+      </Principal>
+      <Dependent Role="MEDDEP">
+        <PropertyRef Name="FK_FM_DEP_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__HO_BED__FK_HO_BE__29572725">
+    <End Role="HO_BED_TYPE" Type="Self.HO_BED_TYPE" Multiplicity="0..1" />
+    <End Role="HO_BED" Type="Self.HO_BED" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HO_BED_TYPE">
+        <PropertyRef Name="HO_BED_TYPE_ID" />
+      </Principal>
+      <Dependent Role="HO_BED">
+        <PropertyRef Name="FK_HO_BED_TYPE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__HO_BED__FK_HO_RO__286302EC">
+    <End Role="HO_ROOM" Type="Self.HO_ROOM" Multiplicity="0..1" />
+    <End Role="HO_BED" Type="Self.HO_BED" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HO_ROOM">
+        <PropertyRef Name="HO_ROOM_ID" />
+      </Principal>
+      <Dependent Role="HO_BED">
+        <PropertyRef Name="FK_HO_ROOM_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__HO_RESERV__FK_ME__3B75D760">
+    <End Role="MEDDEP" Type="Self.MEDDEP" Multiplicity="0..1" />
+    <End Role="HO_RESERV" Type="Self.HO_RESERV" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MEDDEP">
+        <PropertyRef Name="MEDDEP_ID" />
+      </Principal>
+      <Dependent Role="HO_RESERV">
+        <PropertyRef Name="FK_MEDDEP_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__MEDDEP__FK_MEDEC__36B12243">
+    <End Role="MEDECINS" Type="Self.MEDECINS" Multiplicity="0..1" />
+    <End Role="MEDDEP" Type="Self.MEDDEP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MEDECINS">
+        <PropertyRef Name="MEDECINS_ID" />
+      </Principal>
+      <Dependent Role="MEDDEP">
+        <PropertyRef Name="FK_MEDECINS_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__MEDDEP__FK_VID_S__38996AB5">
+    <End Role="VID_STACIONARA" Type="Self.VID_STACIONARA" Multiplicity="0..1" />
+    <End Role="MEDDEP" Type="Self.MEDDEP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VID_STACIONARA">
+        <PropertyRef Name="VID_STACIONARA_ID" />
+      </Principal>
+      <Dependent Role="MEDDEP">
+        <PropertyRef Name="FK_VID_STACIONARA_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__MEDECINS__FK_SPE__33D4B598">
+    <End Role="SPECIALISATION" Type="Self.SPECIALISATION" Multiplicity="0..1" />
+    <End Role="MEDECINS" Type="Self.MEDECINS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SPECIALISATION">
+        <PropertyRef Name="SPECIALISATION_ID" />
+      </Principal>
+      <Dependent Role="MEDECINS">
+        <PropertyRef Name="FK_SPECIALISATION_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__MOTCONSU__FK_PAT__52593CB8">
+    <End Role="PATIENTS" Type="Self.PATIENTS" Multiplicity="0..1" />
+    <End Role="MOTCONSU" Type="Self.MOTCONSU" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PATIENTS">
+        <PropertyRef Name="PATIENTS_ID" />
+      </Principal>
+      <Dependent Role="MOTCONSU">
+        <PropertyRef Name="FK_PATIENTS_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="dbData" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="DATA_DIAGNOSIS" EntityType="Self.DATA_DIAGNOSIS" />
+    <EntitySet Name="DATA_DOCTOR_IN_CHARGE" EntityType="Self.DATA_DOCTOR_IN_CHARGE" />
+    <EntitySet Name="DATA_STAT_HOSPITALIZATION" EntityType="Self.DATA_STAT_HOSPITALIZATION" />
+    <EntitySet Name="DATA_TRANSFERS" EntityType="Self.DATA_TRANSFERS" />
+    <EntitySet Name="DIAGNOZ" EntityType="Self.DIAGNOZ" />
+    <EntitySet Name="ED_PATIENTS_STATUS" EntityType="Self.ED_PATIENTS_STATUS" />
+    <EntitySet Name="ED_TREATMENT_RESULTS" EntityType="Self.ED_TREATMENT_RESULTS" />
+    <EntitySet Name="FM_DEP" EntityType="Self.FM_DEP" />
+    <EntitySet Name="HO_BED" EntityType="Self.HO_BED" />
+    <EntitySet Name="HO_BED_TYPE" EntityType="Self.HO_BED_TYPE" />
+    <EntitySet Name="HO_RESERV" EntityType="Self.HO_RESERV" />
+    <EntitySet Name="HO_ROOM" EntityType="Self.HO_ROOM" />
+    <EntitySet Name="MEDDEP" EntityType="Self.MEDDEP" />
+    <EntitySet Name="MEDECINS" EntityType="Self.MEDECINS" />
+    <EntitySet Name="MOTCONSU" EntityType="Self.MOTCONSU" />
+    <EntitySet Name="MOTCONSU_EVENT_TYPES" EntityType="Self.MOTCONSU_EVENT_TYPES" />
+    <EntitySet Name="PATIENTS" EntityType="Self.PATIENTS" />
+    <EntitySet Name="PL_EXAM" EntityType="Self.PL_EXAM" />
+    <EntitySet Name="PLANNING" EntityType="Self.PLANNING" />
+    <EntitySet Name="SPECIALISATION" EntityType="Self.SPECIALISATION" />
+    <EntitySet Name="VID_STACIONARA" EntityType="Self.VID_STACIONARA" />
+    <AssociationSet Name="FK__DATA_DIAG__FK_DI__5AEE82B9" Association="Self.FK__DATA_DIAG__FK_DI__5AEE82B9">
+      <End Role="DIAGNOZ" EntitySet="DIAGNOZ" />
+      <End Role="DATA_DIAGNOSIS" EntitySet="DATA_DIAGNOSIS" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DATA_DIAG__FK_MO__5BE2A6F2" Association="Self.FK__DATA_DIAG__FK_MO__5BE2A6F2">
+      <End Role="MOTCONSU" EntitySet="MOTCONSU" />
+      <End Role="DATA_DIAGNOSIS" EntitySet="DATA_DIAGNOSIS" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DATA_DOCT__FK_ME__5629CD9C" Association="Self.FK__DATA_DOCT__FK_ME__5629CD9C">
+      <End Role="MEDECINS" EntitySet="MEDECINS" />
+      <End Role="DATA_DOCTOR_IN_CHARGE" EntitySet="DATA_DOCTOR_IN_CHARGE" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DATA_DOCT__FK_MO__5535A963" Association="Self.FK__DATA_DOCT__FK_MO__5535A963">
+      <End Role="MOTCONSU" EntitySet="MOTCONSU" />
+      <End Role="DATA_DOCTOR_IN_CHARGE" EntitySet="DATA_DOCTOR_IN_CHARGE" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DATA_STAT__FK_DA__48CFD27E" Association="Self.FK__DATA_STAT__FK_DA__48CFD27E">
+      <End Role="DATA_TRANSFERS" EntitySet="DATA_TRANSFERS" />
+      <End Role="DATA_STAT_HOSPITALIZATION" EntitySet="DATA_STAT_HOSPITALIZATION" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DATA_STAT__FK_ED__46E78A0C" Association="Self.FK__DATA_STAT__FK_ED__46E78A0C">
+      <End Role="ED_TREATMENT_RESULTS" EntitySet="ED_TREATMENT_RESULTS" />
+      <End Role="DATA_STAT_HOSPITALIZATION" EntitySet="DATA_STAT_HOSPITALIZATION" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DATA_STAT__FK_ED__47DBAE45" Association="Self.FK__DATA_STAT__FK_ED__47DBAE45">
+      <End Role="ED_PATIENTS_STATUS" EntitySet="ED_PATIENTS_STATUS" />
+      <End Role="DATA_STAT_HOSPITALIZATION" EntitySet="DATA_STAT_HOSPITALIZATION" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DATA_STAT__FK_ME__49C3F6B7" Association="Self.FK__DATA_STAT__FK_ME__49C3F6B7">
+      <End Role="MEDECINS" EntitySet="MEDECINS" />
+      <End Role="DATA_STAT_HOSPITALIZATION" EntitySet="DATA_STAT_HOSPITALIZATION" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DATA_TRAN__FK_HO__3E52440B" Association="Self.FK__DATA_TRAN__FK_HO__3E52440B">
+      <End Role="HO_BED" EntitySet="HO_BED" />
+      <End Role="DATA_TRANSFERS" EntitySet="DATA_TRANSFERS" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DATA_TRAN__FK_HO__3F466844" Association="Self.FK__DATA_TRAN__FK_HO__3F466844">
+      <End Role="HO_RESERV" EntitySet="HO_RESERV" />
+      <End Role="DATA_TRANSFERS" EntitySet="DATA_TRANSFERS" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DATA_TRAN__FK_PA__403A8C7D" Association="Self.FK__DATA_TRAN__FK_PA__403A8C7D">
+      <End Role="PATIENTS" EntitySet="PATIENTS" />
+      <End Role="DATA_TRANSFERS" EntitySet="DATA_TRANSFERS" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MEDDEP__FK_FM_DE__37A5467C" Association="Self.FK__MEDDEP__FK_FM_DE__37A5467C">
+      <End Role="FM_DEP" EntitySet="FM_DEP" />
+      <End Role="MEDDEP" EntitySet="MEDDEP" />
+    </AssociationSet>
+    <AssociationSet Name="FK__HO_BED__FK_HO_BE__29572725" Association="Self.FK__HO_BED__FK_HO_BE__29572725">
+      <End Role="HO_BED_TYPE" EntitySet="HO_BED_TYPE" />
+      <End Role="HO_BED" EntitySet="HO_BED" />
+    </AssociationSet>
+    <AssociationSet Name="FK__HO_BED__FK_HO_RO__286302EC" Association="Self.FK__HO_BED__FK_HO_RO__286302EC">
+      <End Role="HO_ROOM" EntitySet="HO_ROOM" />
+      <End Role="HO_BED" EntitySet="HO_BED" />
+    </AssociationSet>
+    <AssociationSet Name="FK__HO_RESERV__FK_ME__3B75D760" Association="Self.FK__HO_RESERV__FK_ME__3B75D760">
+      <End Role="MEDDEP" EntitySet="MEDDEP" />
+      <End Role="HO_RESERV" EntitySet="HO_RESERV" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MEDDEP__FK_MEDEC__36B12243" Association="Self.FK__MEDDEP__FK_MEDEC__36B12243">
+      <End Role="MEDECINS" EntitySet="MEDECINS" />
+      <End Role="MEDDEP" EntitySet="MEDDEP" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MEDDEP__FK_VID_S__38996AB5" Association="Self.FK__MEDDEP__FK_VID_S__38996AB5">
+      <End Role="VID_STACIONARA" EntitySet="VID_STACIONARA" />
+      <End Role="MEDDEP" EntitySet="MEDDEP" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MEDECINS__FK_SPE__33D4B598" Association="Self.FK__MEDECINS__FK_SPE__33D4B598">
+      <End Role="SPECIALISATION" EntitySet="SPECIALISATION" />
+      <End Role="MEDECINS" EntitySet="MEDECINS" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MOTCONSU__FK_PAT__52593CB8" Association="Self.FK__MOTCONSU__FK_PAT__52593CB8">
+      <End Role="PATIENTS" EntitySet="PATIENTS" />
+      <End Role="MOTCONSU" EntitySet="MOTCONSU" />
+    </AssociationSet>
+    <EntitySet Name="Role" EntityType="collection_faceoffModel.Role" />
+    <EntitySet Name="Users" EntityType="collection_faceoffModel.Users" />
+    <AssociationSet Name="FK__Users__FKRoleID__04E4BC85" Association="collection_faceoffModel.FK__Users__FKRoleID__04E4BC85">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK__HO_ROOM__FK_MEDD__14270015" Association="collection_faceoffModel.FK__HO_ROOM__FK_MEDD__14270015">
+      <End Role="MEDDEP" EntitySet="MEDDEP" />
+      <End Role="HO_ROOM" EntitySet="HO_ROOM" />
+    </AssociationSet>
+    <EntitySet Name="HO_RESERV_STATUS" EntityType="collection_faceoffModel.HO_RESERV_STATUS" />
+    <AssociationSet Name="FK__HO_RESERV__FK_HO__17036CC0" Association="collection_faceoffModel.FK__HO_RESERV__FK_HO__17036CC0">
+      <End Role="HO_RESERV_STATUS" EntitySet="HO_RESERV_STATUS" />
+      <End Role="HO_RESERV" EntitySet="HO_RESERV" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Role_ID" />
+    </Key>
+    <Property Name="Role_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TitleRole" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Users" Relationship="collection_faceoffModel.FK__Users__FKRoleID__04E4BC85" FromRole="Role" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Users_ID" />
+    </Key>
+    <Property Name="Users_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LastName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="FirstName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="MiddleName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Login" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="FKRoleID" Type="Int32" />
+    <NavigationProperty Name="Role" Relationship="collection_faceoffModel.FK__Users__FKRoleID__04E4BC85" FromRole="Users" ToRole="Role" />
+    <Property Name="isBlocked" Type="Boolean" />
+    <Property Name="dateCreatedPass" Type="DateTime" Precision="0" />
+    <Property Name="isDropped" Type="Boolean" />
+    <Property Name="PasswordCountAttempt" Type="Int32" />
+    <Property Name="Email" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="HashPass" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK__Users__FKRoleID__04E4BC85">
+    <End Type="collection_faceoffModel.Role" Role="Role" Multiplicity="0..1" />
+    <End Type="collection_faceoffModel.Users" Role="Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Role_ID" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="FKRoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__HO_ROOM__FK_MEDD__14270015">
+    <End Type="collection_faceoffModel.MEDDEP" Role="MEDDEP" Multiplicity="0..1" />
+    <End Type="collection_faceoffModel.HO_ROOM" Role="HO_ROOM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MEDDEP">
+        <PropertyRef Name="MEDDEP_ID" />
+      </Principal>
+      <Dependent Role="HO_ROOM">
+        <PropertyRef Name="FK_MEDDEP_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="HO_RESERV_STATUS">
+    <Key>
+      <PropertyRef Name="HO_RESERV_STATUS_ID" />
+    </Key>
+    <Property Name="HO_RESERV_STATUS_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LABEL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="HO_RESERV" Relationship="collection_faceoffModel.FK__HO_RESERV__FK_HO__17036CC0" FromRole="HO_RESERV_STATUS" ToRole="HO_RESERV" />
+  </EntityType>
+  <Association Name="FK__HO_RESERV__FK_HO__17036CC0">
+    <End Type="collection_faceoffModel.HO_RESERV_STATUS" Role="HO_RESERV_STATUS" Multiplicity="0..1" />
+    <End Type="collection_faceoffModel.HO_RESERV" Role="HO_RESERV" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HO_RESERV_STATUS">
+        <PropertyRef Name="HO_RESERV_STATUS_ID" />
+      </Principal>
+      <Dependent Role="HO_RESERV">
+        <PropertyRef Name="FK_HO_RESERV_STATUS_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

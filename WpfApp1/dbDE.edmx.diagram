@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e5ef8c5620b3468e934dc214672f5b06" Name="Diagram1" ZoomLevel="62">
+        <EntityTypeShape EntityType="collection_faceoffModel.DATA_DIAGNOSIS" Width="1.5" PointX="5.25" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="collection_faceoffModel.DATA_DOCTOR_IN_CHARGE" Width="1.5" PointX="5.25" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="collection_faceoffModel.DATA_STAT_HOSPITALIZATION" Width="1.5" PointX="8.25" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="collection_faceoffModel.DATA_TRANSFERS" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="collection_faceoffModel.DIAGNOZ" Width="1.5" PointX="3" PointY="16.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="collection_faceoffModel.ED_PATIENTS_STATUS" Width="1.5" PointX="6" PointY="18.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="collection_faceoffModel.ED_TREATMENT_RESULTS" Width="1.5" PointX="6" PointY="20.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="collection_faceoffModel.FM_DEP" Width="1.5" PointX="3" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="collection_faceoffModel.HO_BED" Width="1.5" PointX="7.5" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="collection_faceoffModel.HO_BED_TYPE" Width="1.5" PointX="5.25" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="collection_faceoffModel.HO_RESERV" Width="1.5" PointX="7.5" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="collection_faceoffModel.HO_ROOM" Width="1.5" PointX="5.25" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="collection_faceoffModel.MEDDEP" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="collection_faceoffModel.MEDECINS" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="collection_faceoffModel.MOTCONSU" Width="1.5" PointX="3" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="collection_faceoffModel.MOTCONSU_EVENT_TYPES" Width="1.5" PointX="9.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="collection_faceoffModel.PATIENTS" Width="1.5" PointX="7.5" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="collection_faceoffModel.PL_EXAM" Width="1.5" PointX="10.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="collection_faceoffModel.PLANNING" Width="1.5" PointX="11.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="collection_faceoffModel.SPECIALISATION" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="collection_faceoffModel.VID_STACIONARA" Width="1.5" PointX="3" PointY="8.875" IsExpanded="true" />
+        <AssociationConnector Association="collection_faceoffModel.FK__DATA_DIAG__FK_DI__5AEE82B9" ManuallyRouted="false" />
+        <AssociationConnector Association="collection_faceoffModel.FK__DATA_DIAG__FK_MO__5BE2A6F2" ManuallyRouted="false" />
+        <AssociationConnector Association="collection_faceoffModel.FK__DATA_DOCT__FK_ME__5629CD9C" ManuallyRouted="false" />
+        <AssociationConnector Association="collection_faceoffModel.FK__DATA_DOCT__FK_MO__5535A963" ManuallyRouted="false" />
+        <AssociationConnector Association="collection_faceoffModel.FK__DATA_STAT__FK_DA__48CFD27E" ManuallyRouted="false" />
+        <AssociationConnector Association="collection_faceoffModel.FK__DATA_STAT__FK_ED__46E78A0C" ManuallyRouted="false" />
+        <AssociationConnector Association="collection_faceoffModel.FK__DATA_STAT__FK_ED__47DBAE45" ManuallyRouted="false" />
+        <AssociationConnector Association="collection_faceoffModel.FK__DATA_STAT__FK_ME__49C3F6B7" ManuallyRouted="false" />
+        <AssociationConnector Association="collection_faceoffModel.FK__DATA_TRAN__FK_HO__3E52440B" ManuallyRouted="false" />
+        <AssociationConnector Association="collection_faceoffModel.FK__DATA_TRAN__FK_HO__3F466844" ManuallyRouted="false" />
+        <AssociationConnector Association="collection_faceoffModel.FK__DATA_TRAN__FK_PA__403A8C7D" ManuallyRouted="false" />
+        <AssociationConnector Association="collection_faceoffModel.FK__MEDDEP__FK_FM_DE__37A5467C" ManuallyRouted="false" />
+        <AssociationConnector Association="collection_faceoffModel.FK__HO_BED__FK_HO_BE__29572725" ManuallyRouted="false" />
+        <AssociationConnector Association="collection_faceoffModel.FK__HO_BED__FK_HO_RO__286302EC" ManuallyRouted="false" />
+        <AssociationConnector Association="collection_faceoffModel.FK__HO_RESERV__FK_ME__3B75D760" ManuallyRouted="false" />
+        <AssociationConnector Association="collection_faceoffModel.FK__MEDDEP__FK_MEDEC__36B12243" ManuallyRouted="false" />
+        <AssociationConnector Association="collection_faceoffModel.FK__MEDDEP__FK_VID_S__38996AB5" ManuallyRouted="false" />
+        <AssociationConnector Association="collection_faceoffModel.FK__MEDECINS__FK_SPE__33D4B598" ManuallyRouted="false" />
+        <AssociationConnector Association="collection_faceoffModel.FK__MOTCONSU__FK_PAT__52593CB8" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="collection_faceoffModel.Role" Width="1.5" PointX="10.375" PointY="12.375" />
+        <EntityTypeShape EntityType="collection_faceoffModel.Users" Width="1.5" PointX="12.625" PointY="12" />
+        <AssociationConnector Association="collection_faceoffModel.FK__Users__FKRoleID__04E4BC85" />
+        <AssociationConnector Association="collection_faceoffModel.FK__HO_ROOM__FK_MEDD__14270015" />
+        <EntityTypeShape EntityType="collection_faceoffModel.HO_RESERV_STATUS" Width="3.75" PointX="12.375" PointY="7.75" />
+        <AssociationConnector Association="collection_faceoffModel.FK__HO_RESERV__FK_HO__17036CC0" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
